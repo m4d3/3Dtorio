@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Building : MonoBehaviour {
@@ -38,5 +40,35 @@ public class Building : MonoBehaviour {
     {
         if(_manager)
             _manager.OverBuilding = null;
+    }
+
+    protected Vector3 VectorFromDir()
+    {
+        Vector3 dir = Vector3.up;
+
+        switch (BuildingDirection)
+        {
+            case Direction.Up:
+                dir = this.transform.forward;
+                break;
+            case Direction.Right:
+                dir = this.transform.right;
+                break;
+            case Direction.Down:
+                dir = this.transform.forward * -1;
+                break;
+            case Direction.Left:
+                dir = this.transform.right * -1;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        return dir;
+    }
+
+    public virtual void Build()
+    {
+        
     }
 }

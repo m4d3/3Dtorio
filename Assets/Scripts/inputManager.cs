@@ -55,6 +55,7 @@ public class inputManager : MonoBehaviour
             {
                 currentBuilding = null;
                 buildingScript.enabled = true;
+                buildingScript.Build();
             }
         }
         else
@@ -73,6 +74,13 @@ public class inputManager : MonoBehaviour
                 Debug.Log("Building");
                 currentBuilding = Instantiate(Buildings[1], tilePosition, Quaternion.identity);
                 buildingScript = currentBuilding.GetComponent<BaseInserter>();
+                buildingScript.enabled = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Debug.Log("Building");
+                currentBuilding = Instantiate(Buildings[2], tilePosition, Quaternion.identity);
+                buildingScript = currentBuilding.GetComponent<BaseProducer>();
                 buildingScript.enabled = false;
             }
 
